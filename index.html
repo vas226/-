@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grow a Garden</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6f0;
+      color: #2e2e2e;
+    }
+
+    header {
+      background-color: #ffccaa;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 4px solid #ff9966;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .garden-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 30px auto;
+      background: linear-gradient(to top, #8B5E3C 50%, #c2f0c2 50%);
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .lily-stem {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 0;
+      background: #3e7e3e;
+      transition: height 1.5s ease-out;
+      z-index: 1;
+    }
+
+    .lily-stem.grow {
+      height: 100px;
+    }
+
+    .lily-flower {
+      position: absolute;
+      bottom: calc(50% + 100px);
+      left: 50%;
+      transform: translate(-50%, 0) scale(0);
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at center, #ff6a00, #ff2e2e);
+      border-radius: 50% 50% 40% 40%;
+      box-shadow: 0 0 15px rgba(255, 100, 0, 0.5);
+      opacity: 0;
+      transition: transform 1s ease-out, opacity 1s ease-out;
+      z-index: 2;
+    }
+
+    .lily-flower.bloom {
+      transform: translate(-50%, 0) scale(1);
+      opacity: 1;
+    }
+
+    button.plant-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff6a00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #fff0e6;
+      margin-top: 60px;
+    }
+
+    .official-button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: default;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Grow a Garden</h1>
+  </header>
+
+  <main>
+    <h2>Посади чарівну Ember Lily 🌺🔥</h2>
+    <div class="garden-container">
+      <div id="lilyStem" class="lily-stem"></div>
+      <div id="lilyFlower" class="lily-flower"></div>
+    </div>
+    <button class="plant-button" onclick="growLily()">Посадити</button>
+  </main>
+
+  <footer>
+    <button class="official-button">
+      Це офіційний сайт Grow a Garden
+    </button>
+  </footer>
+
+  <script>
+    function growLily() {
+      const stem = document.getElementById("lilyStem");
+      const flower = document.getElementById("lilyFlower");
+
+      // Скидаємо
+      stem.classList.remove("grow");
+      flower.classList.remove("bloom");
+
+      void stem.offsetWidth;
+
+      // Запускаємо ріст стебла
+      stem.classList.add("grow");
+
+      // Через трохи — з’являється квітка
+      setTimeout(() => {
+        flower.classList.add("bloom");
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
